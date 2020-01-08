@@ -1,0 +1,8 @@
+.folder {
+    display: block;
+    margin: 1rem .5rem;
+    padding: 1rem .5rem;
+    border: 2px solid black;
+    text-decoration: none;
+    color: black;
+}
