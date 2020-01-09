@@ -6,7 +6,7 @@ import './FolderList.css';
 
 class FolderList extends React.Component {
     static defaultProps = {
-        folders: STORE.folders // Is ...Store.folders equivalent? TODO
+        folders: STORE.folders
     }
 
     render() {

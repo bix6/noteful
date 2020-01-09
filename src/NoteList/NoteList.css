@@ -1,7 +1,6 @@
-.folder-list {
+.note-list {
     display: block;
     border: 2px solid black;
     font-family: serif;
     font-size: 2rem;
-    text-align: center;
 }

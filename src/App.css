@@ -1,0 +1,15 @@
+@media screen and (min-width: 768px) {
+    .App{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .header {
+        width: 100%;
+    }
+    .folder-list {
+        flex: 1 1 20%;
+    }
+    .note-list {
+        flex: 4 4 80%;
+    }
+}
