@@ -10,8 +10,19 @@ class NoteList extends React.Component {
     };
 
     render() {
-        const notes = this.props.notes.map((note, i) => 
-            <Note {...note} key={i}/>
+        // if there is a match object, get the folderId and only return matching notes
+        const folderId = this.props.match
+            ? this.props.match.params.folderId
+            : null;
+        const notes = this.props.notes.map((note, i) => {
+            if (!folderId) {
+                return <Note {...note} key={i}/>;
+            }
+            if (folderId && note.folderId === folderId) {
+                return <Note {...note} key={i}/>;
+            }
+            return null;
+        }
         );
 
         return(

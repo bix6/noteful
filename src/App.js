@@ -9,13 +9,15 @@ function App() {
     return (
     <div className='App'>
         <header>
-            <Route exact path='/' component={Header} />
+            <Route path='/' component={Header} />
         </header>
         <nav>
             <Route exact path='/' component={FolderList} />
+            <Route path='/folder/:folderId' component={FolderList} />
         </nav>
         <main>
             <Route exact path='/' component={NoteList} />
+            <Route path='/folder/:folderId' component={NoteList} />
         </main>
     </div>
     );
