@@ -7,11 +7,17 @@ import './App.css';
 
 function App() {
     return (
-    <main className='App'>
-        <Route exact path='/' component={Header} />
-        <Route exact path='/' component={FolderList} />
-        <Route exact path='/' component={NoteList} />
-    </main>
+    <div className='App'>
+        <header>
+            <Route exact path='/' component={Header} />
+        </header>
+        <nav>
+            <Route exact path='/' component={FolderList} />
+        </nav>
+        <main>
+            <Route exact path='/' component={NoteList} />
+        </main>
+    </div>
     );
 }
 

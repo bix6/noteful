@@ -3,13 +3,13 @@
         display: flex;
         flex-wrap: wrap;
     }
-    .header {
+    header {
         width: 100%;
     }
-    .folder-list {
-        flex: 1 1 20%;
+    nav {
+        flex: 1 1 25%;
     }
-    .note-list {
-        flex: 4 4 80%;
+    main {
+        flex: 4 4 75%;
     }
 }
