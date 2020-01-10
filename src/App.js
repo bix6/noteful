@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 import Header from './Header/Header';
 import FolderList from './FolderList/FolderList';
 import NoteList from './NoteList/NoteList';
+import NoteNav from './NoteNav/NoteNav';
+import NotePage from './NotePage/NotePage';
 import './App.css';
 import STORE from './dummy-store';
 
@@ -25,6 +27,16 @@ class App extends React.Component {
                     <Route 
                         path='/folder/:folderId' 
                         render={() => <FolderList folders={this.state.folders} />} />
+                    <Route
+                        path='/note/:noteId'
+                        render={(routerProps) => 
+                            <NoteNav 
+                                folders={this.state.folders} 
+                                folderId={this.state.notes.find(note => 
+                                    note.id === routerProps.match.params.noteId
+                                ).folderId} /> 
+                        } />
+                            
                 </nav>
                 <main>
                     <Route 
@@ -37,11 +49,17 @@ class App extends React.Component {
                                 notes={this.state.notes.map(note => {
                                     return note.folderId === routerProps.match.params.folderId
                                         ? note
-                                        : null;})
-                                } 
+                                        : null;
+                                })} 
                             />
                         } 
                     />
+                    <Route
+                        path='/note/:noteId'
+                        render={(routerProps) => 
+                            <NotePage {...this.state.notes.find(note =>
+                                note.id === routerProps.match.params.noteId)} />
+                        } />
                 </main>
             </div>
         );

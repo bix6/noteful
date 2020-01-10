@@ -14,7 +14,7 @@ class Note extends React.Component {
     render() {
         return(
             <div className="note">
-                <Link to="/TODO" className="note-name">{this.props.name}</Link>
+                <Link to={`/note/${this.props.id}`} className="note-name">{this.props.name}</Link>
                 <div className="modified">{this.props.modified}</div>
                 <Link to="/TODO" className="delete-note">Delete Note</Link>
             </div>
