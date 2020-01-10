@@ -29,14 +29,16 @@ class App extends React.Component {
                         render={() => <FolderList folders={this.state.folders} />} />
                     <Route
                         path='/note/:noteId'
-                        render={(routerProps) => 
-                            <NoteNav 
-                                folders={this.state.folders} 
-                                folderId={this.state.notes.find(note => 
+                        render={(routerProps) => {
+                            const folderId = this.state.notes.find(note => 
                                     note.id === routerProps.match.params.noteId
-                                ).folderId} /> 
-                        } />
-                            
+                                ).folderId;
+                            const folderName = this.state.folders.find(folder => 
+                                folder.id = folderId
+                                ).name;
+                            return <NoteNav folderName={folderName}  /> 
+                        }}
+                    />  
                 </nav>
                 <main>
                     <Route 
@@ -44,15 +46,14 @@ class App extends React.Component {
                         render={() => <NoteList notes={this.state.notes} />} />
                     <Route 
                         path='/folder/:folderId' 
-                        render={(routerProps) => 
-                            <NoteList 
-                                notes={this.state.notes.map(note => {
-                                    return note.folderId === routerProps.match.params.folderId
-                                        ? note
-                                        : null;
-                                })} 
-                            />
-                        } 
+                        render={(routerProps) => {
+                            const notes = this.state.notes.map(note => {
+                                return note.folderId === routerProps.match.params.folderId
+                                    ? note
+                                    : null;
+                            });
+                            return <NoteList notes={notes} /> 
+                        }} 
                     />
                     <Route
                         path='/note/:noteId'
