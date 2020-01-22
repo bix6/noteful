@@ -6,20 +6,75 @@ import NoteList from './NoteList/NoteList';
 import NoteNav from './NoteNav/NoteNav';
 import NotePage from './NotePage/NotePage';
 import './App.css';
-import STORE from './dummy-store';
 
 class App extends React.Component {
-    state = {
-        folders: STORE.folders,
-        notes: STORE.notes
-    };
+   state = {
+       folders: [],
+       notes: [],
+   };
+
+    getFolders() {
+        const url = 'http://localhost:9090/folders';
+        const options = {
+            method: 'GET',
+        }
+        fetch(url, options)
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw Error(res.statusText);
+            })
+            .then(resJson => {
+                console.log(resJson);
+                this.setState({
+                    folders: resJson
+                });
+                return resJson;
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }
+
+    // fetches the init state, called when the component mounts
+    // endpoint is used to get endpoint and update state for endpoint name
+    getInitState(endpoint) {
+        const url = `http://localhost:9090/${endpoint}`;
+        const options = {
+            method: 'GET',
+        }
+        fetch(url, options)
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw Error(res.statusText);
+            })
+            .then(resJson => {
+                this.setState({
+                    [endpoint]: resJson
+                });
+                return resJson;
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }
+
+    // init state on component mount
+    // gets folders and notes from server
+    componentDidMount() {
+        this.getInitState('folders');
+        this.getInitState('notes');
+    }
 
     getFolderName(routerProps) {
         const folderId = this.state.notes.find(note => 
             note.id === routerProps.match.params.noteId
         ).folderId;
         const folderName = this.state.folders.find(folder => 
-        folder.id === folderId
+            folder.id === folderId
         ).name;
         return folderName;
     }
