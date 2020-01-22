@@ -13,30 +13,6 @@ class App extends React.Component {
        notes: [],
    };
 
-    getFolders() {
-        const url = 'http://localhost:9090/folders';
-        const options = {
-            method: 'GET',
-        }
-        fetch(url, options)
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw Error(res.statusText);
-            })
-            .then(resJson => {
-                console.log(resJson);
-                this.setState({
-                    folders: resJson
-                });
-                return resJson;
-            })
-            .catch(err => {
-                console.error(err);
-            })
-    }
-
     // fetches the init state, called when the component mounts
     // endpoint is used to get endpoint and update state for endpoint name
     getInitState(endpoint) {
