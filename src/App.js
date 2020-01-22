@@ -5,6 +5,7 @@ import FolderList from './FolderList/FolderList';
 import NoteList from './NoteList/NoteList';
 import NoteNav from './NoteNav/NoteNav';
 import NotePage from './NotePage/NotePage';
+import NotefulContext from './NotefulContext';
 import './App.css';
 
 class App extends React.Component {
@@ -13,7 +14,8 @@ class App extends React.Component {
        notes: [],
    };
 
-    // fetches the init state, called when the component mounts
+    // fetches the init state
+    // called when the component mounts
     // endpoint is used to get endpoint and update state for endpoint name
     getInitState(endpoint) {
         const url = `http://localhost:9090/${endpoint}`;
@@ -69,33 +71,39 @@ class App extends React.Component {
     }
 
     render() {
+        const contextValue = {
+            folders: this.state.folders,
+            notes: this.state.notes
+        };
         return (
             <div className='App'>
                 <header>
                     <Route path='/' component={Header} />
                 </header>
-                <nav>
-                    <Route 
-                        exact path='/' 
-                        render={() => <FolderList folders={this.state.folders} />} />
-                    <Route 
-                        path='/folder/:folderId' 
-                        render={() => <FolderList folders={this.state.folders} />} />
-                    <Route
-                        path='/note/:noteId'
-                        render={(routerProps) => <NoteNav folderName={this.getFolderName(routerProps)} />} />  
-                </nav>
-                <main>
-                    <Route 
-                        exact path='/' 
-                        render={() => <NoteList notes={this.state.notes} />} />
-                    <Route 
-                        path='/folder/:folderId' 
-                        render={(routerProps) => <NoteList notes={this.getNotes(routerProps)} />} />
-                    <Route
-                        path='/note/:noteId'
-                        render={(routerProps) => <NotePage {...this.getNote(routerProps)} />} />
-                </main>
+                <NotefulContext.Provider value={contextValue}>
+                    <nav>
+                        <Route 
+                            exact path='/' 
+                            component={FolderList} />
+                        <Route 
+                            path='/folder/:folderId' 
+                            component={FolderList} />
+                        <Route
+                            path='/note/:noteId'
+                            render={(routerProps) => <NoteNav folderName={this.getFolderName(routerProps)} />} />  
+                    </nav>
+                    <main>
+                        <Route 
+                            exact path='/' 
+                            render={() => <NoteList notes={this.state.notes} />} />
+                        <Route 
+                            path='/folder/:folderId' 
+                            render={(routerProps) => <NoteList notes={this.getNotes(routerProps)} />} />
+                        <Route
+                            path='/note/:noteId'
+                            render={(routerProps) => <NotePage {...this.getNote(routerProps)} />} />
+                    </main>
+                </NotefulContext.Provider>
             </div>
         );
     }

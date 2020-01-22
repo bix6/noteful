@@ -1,20 +1,15 @@
 import React from 'react';
 import Folder from '../Folder/Folder';
 import AddFolder from '../AddFolder/AddFolder';
+import NotefulContext from '../NotefulContext';
 import './FolderList.css';
 
 class FolderList extends React.Component {
-    static defaultProps = {
-        folders: [
-            {
-              "id": "default id",
-              "name": "default name"
-            }
-          ]
-    }
+
+    static contextType = NotefulContext;
 
     render() {
-        const folders = this.props.folders.map((folder, i) => 
+        const folders = this.context.folders.map((folder, i) => 
             <Folder name={folder.name} id={folder.id} key={i} />
         );
 
