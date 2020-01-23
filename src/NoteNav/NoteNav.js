@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import NotefulContext from '../NotefulContext';
 import './NoteNav.css';
 
 class NoteNav extends React.Component {
