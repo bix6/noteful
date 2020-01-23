@@ -47,16 +47,6 @@ class App extends React.Component {
         this.getInitState('notes');
     }
 
-    getFolderName(routerProps) {
-        const folderId = this.state.notes.find(note => 
-            note.id === routerProps.match.params.noteId
-        ).folderId;
-        const folderName = this.state.folders.find(folder => 
-            folder.id === folderId
-        ).name;
-        return folderName;
-    }
-
     getNote(routerProps) {
         return this.state.notes.find(note => note.id === routerProps.match.params.noteId)
     }
@@ -81,7 +71,7 @@ class App extends React.Component {
                             component={FolderList} />
                         <Route
                             path='/note/:noteId'
-                            render={(routerProps) => <NoteNav folderName={this.getFolderName(routerProps)} />} />  
+                            component={NoteNav} />
                     </nav>
                     <main>
                         <Route 
