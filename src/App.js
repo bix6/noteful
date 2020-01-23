@@ -57,15 +57,6 @@ class App extends React.Component {
         return folderName;
     }
 
-    getNotes(routerProps) {
-        const notes = this.state.notes.map(note => {
-            return note.folderId === routerProps.match.params.folderId
-                ? note
-                : null;
-        });
-        return notes;
-    }
-
     getNote(routerProps) {
         return this.state.notes.find(note => note.id === routerProps.match.params.noteId)
     }
@@ -95,10 +86,10 @@ class App extends React.Component {
                     <main>
                         <Route 
                             exact path='/' 
-                            render={() => <NoteList notes={this.state.notes} />} />
+                            component={NoteList} />
                         <Route 
                             path='/folder/:folderId' 
-                            render={(routerProps) => <NoteList notes={this.getNotes(routerProps)} />} />
+                            component={NoteList}/>
                         <Route
                             path='/note/:noteId'
                             render={(routerProps) => <NotePage {...this.getNote(routerProps)} />} />
