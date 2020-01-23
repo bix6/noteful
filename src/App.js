@@ -47,11 +47,22 @@ class App extends React.Component {
         this.getInitState('notes');
     }
 
+    deleteNote = id => {
+        const newNotes = this.state.notes.filter(note => 
+            note.id !== id
+        );
+        this.setState({
+            notes: newNotes
+        });
+    }
+
     render() {
         const contextValue = {
             folders: this.state.folders,
-            notes: this.state.notes
+            notes: this.state.notes,
+            deleteNote: this.deleteNote,
         };
+
         return (
             <div className='App'>
                 <header>

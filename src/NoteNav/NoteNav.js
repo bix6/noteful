@@ -8,12 +8,18 @@ class NoteNav extends React.Component {
 
     getFolderName() {
         if (this.context.notes && this.context.notes.length > 0) {
-            const folderId = this.context.notes.find(note => 
-                note.id === this.props.match.params.noteId
-            ).folderId;
-            const folderName = this.context.folders.find(folder =>
-                folder.id === folderId
-            ).name;
+            const folderId = this.context.notes.find(note => {
+                if (note.id === this.props.match.params.noteId) {
+                    return note.folderId;
+                }
+                return false;
+            });
+            const folderName = this.context.folders.find(folder => {
+                if (folder.id === folderId) {
+                    return folder.name;
+                }
+                return false;
+            });
             return folderName;
         }
     }
