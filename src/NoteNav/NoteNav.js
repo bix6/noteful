@@ -36,7 +36,6 @@ class NoteNav extends React.Component {
     }
 
     render() {
-        console.log(this.getFolderName());
         return (
             <div className="note-nav">
                 <Link to='/' onClick={e => this.goBack(e)}>Back</Link>
