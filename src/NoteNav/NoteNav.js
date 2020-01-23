@@ -16,9 +16,6 @@ class NoteNav extends React.Component {
             ).name;
             return folderName;
         }
-        else {
-            return 'no folder name';
-        }
     }
 
 
