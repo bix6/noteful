@@ -47,10 +47,6 @@ class App extends React.Component {
         this.getInitState('notes');
     }
 
-    getNote(routerProps) {
-        return this.state.notes.find(note => note.id === routerProps.match.params.noteId)
-    }
-
     render() {
         const contextValue = {
             folders: this.state.folders,
@@ -82,7 +78,7 @@ class App extends React.Component {
                             component={NoteList}/>
                         <Route
                             path='/note/:noteId'
-                            render={(routerProps) => <NotePage {...this.getNote(routerProps)} />} />
+                            component={NotePage} />
                     </main>
                 </NotefulContext.Provider>
             </div>
