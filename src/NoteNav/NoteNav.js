@@ -7,19 +7,24 @@ class NoteNav extends React.Component {
     static contextType = NotefulContext;
 
     getFolderName() {
+        // ensure context exists
         if (this.context.notes && this.context.notes.length > 0) {
-            const folderId = this.context.notes.find(note => {
-                if (note.id === this.props.match.params.noteId) {
-                    return note.folderId;
-                }
-                return false;
-            });
-            const folderName = this.context.folders.find(folder => {
-                if (folder.id === folderId) {
-                    return folder.name;
-                }
-                return false;
-            });
+            // find the note and its folder Id
+            const note = this.context.notes.find(note => 
+                note.id === this.props.match.params.noteId
+            );
+            const folderId = note 
+                ? note.folderId
+                : null;
+
+            // find the folder and its name
+            const folder = this.context.folders.find(folder => 
+                folder.id === folderId
+            );
+            const folderName = folder
+                ? folder.name
+                : null;
+
             return folderName;
         }
     }
@@ -31,6 +36,7 @@ class NoteNav extends React.Component {
     }
 
     render() {
+        console.log(this.getFolderName());
         return (
             <div className="note-nav">
                 <Link to='/' onClick={e => this.goBack(e)}>Back</Link>
