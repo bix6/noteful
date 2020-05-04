@@ -16,7 +16,7 @@ class NoteList extends React.Component {
         // then filter it to remove any nulls
         if (this.props.match && this.props.match.params.folderId) {
             return this.context.notes.map(note => {
-                return note.folderId === this.props.match.params.folderId
+                return note.folderid === this.props.match.params.folderId
                     ? note
                     : null;
             }).filter(note => {

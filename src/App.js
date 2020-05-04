@@ -18,7 +18,7 @@ class App extends React.Component {
     // called when the component mounts
     // endpoint is used to get endpoint and update state for endpoint name
     getInitState(endpoint) {
-        const url = `http://localhost:9090/${endpoint}`;
+        const url = `http://localhost:8000/api/${endpoint}`;
         const options = {
             method: 'GET',
         }
