@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import NotefulContext from '../NotefulContext';
 import './Note.css';
+import config from '../config';
 
 class Note extends React.Component {
     static defaultProps = {
@@ -17,18 +18,20 @@ class Note extends React.Component {
     deleteNote(e) {
         e.preventDefault();
 
-        const url = `http://localhost:9090/notes/${this.props.id}`
+        const url = config.API_ENDPOINT + `/notes/${this.props.id}`;
         const options = {
             method: 'DELETE',
         }
         fetch(url, options)
             .then(res => {
-                if (res.ok) {
-                    return res.json();
+                if (!res.ok) {
+                    return res.json().then(error => {
+                        throw error;
+                    })
                 }
-                throw Error(res.statusText);
+                return res;
             })
-            .then(resJson => {
+            .then(res => {
                 // if we're deleting from inside a note itself, redirect to /
                 if (this.props.match.path.includes('note')) {
                     this.props.history.push('/');

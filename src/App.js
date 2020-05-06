@@ -7,6 +7,7 @@ import NoteNav from './NoteNav/NoteNav';
 import NotePage from './NotePage/NotePage';
 import NotefulContext from './NotefulContext';
 import './App.css';
+import config from './config';
 
 class App extends React.Component {
    state = {
@@ -18,7 +19,7 @@ class App extends React.Component {
     // called when the component mounts
     // endpoint is used to get endpoint and update state for endpoint name
     getInitState(endpoint) {
-        const url = `http://localhost:8000/api/${endpoint}`;
+        const url = config.API_ENDPOINT + `/${endpoint}`
         const options = {
             method: 'GET',
         }
