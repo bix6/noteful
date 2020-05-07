@@ -1,8 +1,8 @@
 import React from 'react';
 import Folder from '../Folder/Folder';
-import AddFolder from '../AddFolder/AddFolder';
 import NotefulContext from '../NotefulContext';
 import './FolderList.css';
+import { Link } from 'react-router-dom';
 
 class FolderList extends React.Component {
 
@@ -18,7 +18,7 @@ class FolderList extends React.Component {
                 <ol>
                     {folders}
                 </ol>
-                <AddFolder />
+                <Link to='/folder/insert'>Add Folder</Link>
             </div>
         );
     }

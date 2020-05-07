@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Header from './Header/Header';
 import FolderList from './FolderList/FolderList';
 import NoteList from './NoteList/NoteList';
@@ -8,6 +8,7 @@ import NotePage from './NotePage/NotePage';
 import NotefulContext from './NotefulContext';
 import './App.css';
 import config from './config';
+import AddFolder from './AddFolder/AddFolder';
 
 class App extends React.Component {
    state = {
@@ -57,11 +58,20 @@ class App extends React.Component {
         });
     }
 
+    insertFolder = folder => {
+        let newFolders = this.state.folders;
+        newFolders.push(folder);
+        this.setState({
+            folders: newFolders
+        });
+    }
+
     render() {
         const contextValue = {
             folders: this.state.folders,
             notes: this.state.notes,
             deleteNote: this.deleteNote,
+            insertFolder: this.insertFolder
         };
 
         return (
@@ -71,26 +81,36 @@ class App extends React.Component {
                 </header>
                 <NotefulContext.Provider value={contextValue}>
                     <nav>
-                        <Route 
-                            exact path='/' 
-                            component={FolderList} />
-                        <Route 
-                            path='/folder/:folderId' 
-                            component={FolderList} />
-                        <Route
-                            path='/note/:noteId'
-                            component={NoteNav} />
+                        <Switch>
+                            <Route 
+                                exact path='/' 
+                                component={FolderList} />
+                            <Route
+                                exact path='/folder/insert'
+                                component={() => <></>} />
+                            <Route 
+                                path='/folder/:folderId' 
+                                component={FolderList} />
+                            <Route
+                                path='/note/:noteId'
+                                component={NoteNav} />
+                        </Switch>
                     </nav>
                     <main>
+                        <Switch>
                         <Route 
                             exact path='/' 
                             component={NoteList} />
+                        <Route
+                            exact path='/folder/insert'
+                            component={AddFolder} />
                         <Route 
                             path='/folder/:folderId' 
                             component={NoteList}/>
                         <Route
                             path='/note/:noteId'
                             component={NotePage} />
+                        </Switch>
                     </main>
                 </NotefulContext.Provider>
             </div>
