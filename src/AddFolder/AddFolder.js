@@ -70,6 +70,10 @@ class AddFolder extends React.Component {
             })
     }
 
+    handleCancel = () => {
+        this.props.history.push('/');
+    }
+
     render() {
         return (
             <form
@@ -94,7 +98,7 @@ class AddFolder extends React.Component {
                 </div>
 
                 <div className="add-folder-button-group">
-                    <button type="button" className="add-folder-button" onClick={ this.props.history.goBack }>
+                    <button type="button" className="add-folder-button" onClick={ this.handleCancel }>
                         Cancel
                     </button>
                     <button type="reset" className="add-folder-button">
