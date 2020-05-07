@@ -1,8 +1,8 @@
 import React from 'react';
 import Note from '../Note/Note';
-import AddNote from '../AddNote/AddNote';
 import NotefulContext from '../NotefulContext';
 import './NoteList.css';
+import { Link } from 'react-router-dom';
 
 class NoteList extends React.Component {
     static contextType = NotefulContext;
@@ -46,7 +46,7 @@ class NoteList extends React.Component {
         return(
             <div className="note-list">
                 { notes }
-                <AddNote />
+                <Link to='/note/insert'>Add Note</Link>
             </div>
         );
     }

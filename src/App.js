@@ -9,6 +9,7 @@ import NotefulContext from './NotefulContext';
 import './App.css';
 import config from './config';
 import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote';
 
 class App extends React.Component {
    state = {
@@ -66,12 +67,21 @@ class App extends React.Component {
         });
     }
 
+    insertNote = note => {
+        let newNotes = this.state.notes;
+        newNotes.push(note);
+        this.setState({
+            notes: newNotes
+        });
+    }
+
     render() {
         const contextValue = {
             folders: this.state.folders,
             notes: this.state.notes,
             deleteNote: this.deleteNote,
-            insertFolder: this.insertFolder
+            insertFolder: this.insertFolder,
+            insertNote: this.insertNote
         };
 
         return (
@@ -88,6 +98,9 @@ class App extends React.Component {
                             <Route
                                 exact path='/folder/insert'
                                 component={() => <></>} />
+                            <Route
+                                exact path='/note/insert'
+                                component={ () => <></> } />
                             <Route 
                                 path='/folder/:folderId' 
                                 component={FolderList} />
@@ -98,18 +111,21 @@ class App extends React.Component {
                     </nav>
                     <main>
                         <Switch>
-                        <Route 
-                            exact path='/' 
-                            component={NoteList} />
-                        <Route
-                            exact path='/folder/insert'
-                            component={AddFolder} />
-                        <Route 
-                            path='/folder/:folderId' 
-                            component={NoteList}/>
-                        <Route
-                            path='/note/:noteId'
-                            component={NotePage} />
+                            <Route 
+                                exact path='/' 
+                                component={NoteList} />
+                            <Route
+                                exact path='/folder/insert'
+                                component={AddFolder} />
+                            <Route
+                                exact path='/note/insert'
+                                component={AddNote} />
+                            <Route 
+                                path='/folder/:folderId' 
+                                component={NoteList}/>
+                            <Route
+                                path='/note/:noteId'
+                                component={NotePage} />
                         </Switch>
                     </main>
                 </NotefulContext.Provider>
