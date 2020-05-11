@@ -32,7 +32,7 @@ class NoteList extends React.Component {
         return notes 
             ? notes.map((note, i) => {
                 return note
-                    ? <Note {...note} key={i}/>
+                    ? <Note {...note} key={i} />
                     : null;
             })
             : <Note />

@@ -10,6 +10,8 @@ import './App.css';
 import config from './config';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
+import MainError from './ErrorBoundaries/MainError';
+import NavError from './ErrorBoundaries/NavError';
 
 class App extends React.Component {
    state = {
@@ -91,42 +93,46 @@ class App extends React.Component {
                 </header>
                 <NotefulContext.Provider value={contextValue}>
                     <nav>
-                        <Switch>
-                            <Route 
-                                exact path='/' 
-                                component={FolderList} />
-                            <Route
-                                exact path='/folder/insert'
-                                component={() => <></>} />
-                            <Route
-                                exact path='/note/insert'
-                                component={ () => <></> } />
-                            <Route 
-                                path='/folder/:folderId' 
-                                component={FolderList} />
-                            <Route
-                                path='/note/:noteId'
-                                component={NoteNav} />
-                        </Switch>
+                        <NavError>
+                            <Switch>
+                                <Route 
+                                    exact path='/' 
+                                    component={FolderList} />
+                                <Route
+                                    exact path='/folder/insert'
+                                    component={() => <></>} />
+                                <Route
+                                    exact path='/note/insert'
+                                    component={ () => <></> } />
+                                <Route 
+                                    path='/folder/:folderId' 
+                                    component={FolderList} />
+                                <Route
+                                    path='/note/:noteId'
+                                    component={NoteNav} />
+                            </Switch>
+                        </NavError>
                     </nav>
                     <main>
-                        <Switch>
-                            <Route 
-                                exact path='/' 
-                                component={NoteList} />
-                            <Route
-                                exact path='/folder/insert'
-                                component={AddFolder} />
-                            <Route
-                                exact path='/note/insert'
-                                component={AddNote} />
-                            <Route 
-                                path='/folder/:folderId' 
-                                component={NoteList}/>
-                            <Route
-                                path='/note/:noteId'
-                                component={NotePage} />
-                        </Switch>
+                        <MainError>
+                            <Switch>
+                                <Route 
+                                    exact path='/' 
+                                    component={NoteList} />
+                                <Route
+                                    exact path='/folder/insert'
+                                    component={AddFolder} />
+                                <Route
+                                    exact path='/note/insert'
+                                    component={AddNote} />
+                                <Route 
+                                    path='/folder/:folderId' 
+                                    component={NoteList}/>
+                                <Route
+                                    path='/note/:noteId'
+                                    component={NotePage} />
+                            </Switch>
+                        </MainError>
                     </main>
                 </NotefulContext.Provider>
             </div>
