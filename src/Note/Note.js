@@ -3,16 +3,9 @@ import { Link, withRouter } from 'react-router-dom';
 import NotefulContext from '../NotefulContext';
 import './Note.css';
 import config from '../config';
+import PropTypes from 'prop-types';
 
 class Note extends React.Component {
-    static defaultProps = {
-        id: 'default id',
-        name: 'default name',
-        modified: 'default modified',
-        folderId: 'default folderId',
-        content: 'default content'
-    }
-
     static contextType = NotefulContext;
 
     deleteNote(e) {
@@ -52,6 +45,22 @@ class Note extends React.Component {
             </div>
         )
     }
+}
+
+Note.defaultProps = {
+    id: 'default id',
+    name: 'default name',
+    modified: 'default modified',
+    folderId: 'default folderId',
+    content: 'default content'
+}
+
+Note.propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    modified: PropTypes.string.isRequired,
+    folderId: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired
 }
 
 export default withRouter(Note);
