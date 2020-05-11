@@ -3,6 +3,7 @@ import './AddFolder.css';
 import ValidationError from '../ValidationError/ValidationError';
 import config from '../config';
 import NotefulContext from '../NotefulContext';
+import './AddFolder.css';
 
 
 class AddFolder extends React.Component {

@@ -176,8 +176,7 @@ class AddNote extends React.Component {
                     <label htmlFor="content">
                         Content *:{' '}
                     </label>
-                    <input
-                        type='text'
+                    <textarea
                         name='content'
                         id='content'
                         onChange={ e => { this.updateContent(e.target.value) } } />

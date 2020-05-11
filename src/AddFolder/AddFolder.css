@@ -7,3 +7,9 @@
     text-decoration: none;
     color: black;
 }
+
+@media screen and (min-width: 768px) {
+    .add-folder {
+        max-width: 350px;
+    }
+}
