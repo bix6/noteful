@@ -42,7 +42,8 @@ class AddFolder extends React.Component {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${config.API_KEY}`
             }
         };
 

@@ -14,6 +14,10 @@ class Note extends React.Component {
         const url = config.API_ENDPOINT + `/notes/${this.props.id}`;
         const options = {
             method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${config.API_KEY}`
+            }
         }
         fetch(url, options)
             .then(res => {

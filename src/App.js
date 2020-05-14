@@ -26,6 +26,10 @@ class App extends React.Component {
         const url = config.API_ENDPOINT + `/${endpoint}`
         const options = {
             method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${config.API_KEY}`
+            }
         }
         fetch(url, options)
             .then(res => {
