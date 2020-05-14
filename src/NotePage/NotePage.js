@@ -8,7 +8,7 @@ class NotePage extends React.Component {
 
     getNote() {
         if (this.context.notes) {
-            return this.context.notes.find(note => note.id === this.props.match.params.noteId)
+            return this.context.notes.find(note => note.id === Number(this.props.match.params.noteId))
         }
     }
 

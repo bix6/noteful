@@ -56,7 +56,7 @@ Note.defaultProps = {
 }
 
 Note.propTypes = {
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     modified: PropTypes.string.isRequired,
     folderId: PropTypes.string.isRequired,

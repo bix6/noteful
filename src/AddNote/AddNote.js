@@ -84,9 +84,8 @@ class AddNote extends React.Component {
         const url = config.API_ENDPOINT + '/notes';
         const body = {
             name: this.state.name.value,
-            folderId: this.state.folderid.value,
+            folderid: this.state.folderid.value,
             content: this.state.content.value,
-            modified: new Date()
         };
         const options = {
             method: 'POST',
