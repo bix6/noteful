@@ -18,7 +18,7 @@ class FolderList extends React.Component {
                 <ol>
                     {folders}
                 </ol>
-                <Link to='/folder/insert'>Add Folder</Link>
+                <Link to='/folder/insert' className='insert-folder'>Add Folder</Link>
             </div>
         );
     }

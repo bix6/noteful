@@ -46,7 +46,7 @@ class NoteList extends React.Component {
         return(
             <div className="note-list">
                 { notes }
-                <Link to='/note/insert'>Add Note</Link>
+                <Link to='/note/insert' className='insert-note'>Add Note</Link>
             </div>
         );
     }

@@ -3,4 +3,18 @@
     border: 2px solid black;
     font-family: serif;
     font-size: 2rem;
+    text-align: center;
+}
+
+.insert-note {
+    color: darkblue;
+    line-height: 4rem;
+}
+
+.insert-note:hover {
+    color: dodgerblue;
+}
+
+.insert-note:active {
+    color: lightskyblue;
 }

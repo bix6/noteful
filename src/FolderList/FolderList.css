@@ -5,3 +5,16 @@
     font-size: 2rem;
     text-align: center;
 }
+
+.insert-folder {
+    color: darkblue;
+    line-height: 4rem;
+}
+
+.insert-folder:hover {
+    color: dodgerblue;
+}
+
+.insert-folder:active {
+    color: lightskyblue;
+}
